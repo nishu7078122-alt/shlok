@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="sa">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Jeevan Amrit — Meditation</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Minimal-modern meditation page */
+    body{ margin:0; font-family:"Noto Sans Devanagari", sans-serif; background: linear-gradient(180deg,#fff9f0,#f7efe0); color:#4a2f24; display:flex; flex-direction:column; min-height:100vh; }
+    .med-wrap{ display:flex; flex-direction:column; align-items:center; justify-content:center; flex:1; padding:40px; text-align:center; }
+    .shlok-box{ max-width:900px; background:rgba(255,255,255,0.8); border-radius:14px; padding:36px; box-shadow:0 10px 30px rgba(74,47,36,0.06); transition: all .6s ease; }
+    .shlok{ font-size: clamp(20px, 4.5vw, 36px); line-height:1.45; color:#4a2f24; opacity:1; transition:opacity .8s ease, transform .8s ease; }
+    .shlok.fade-out{ opacity:0; transform: translateY(10px); }
+    .controls{ margin-top:20px; display:flex; gap:10px; align-items:center; }
+    .btn{ padding:10px 16px; border-radius:10px; border:none; cursor:pointer; background:#c99b4b; color:#fff; font-weight:700; }
+    .btn.secondary{ background:transparent; border:1px solid #c99b4b; color:#4a2f24; }
+    .small-note{ color:#7a5a4a; margin-top:12px; }
+  </style>
+</head>
+<body>
+  <header style="padding:14px 20px; display:flex; justify-content:space-between; align-items:center; background:transparent;">
+    <div style="display:flex;gap:12px;align-items:center">
+      <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(180deg,#c99b4b,#b07a36);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700">☕</div>
+      <div>
+        <div style="font-weight:700;color:#4a2f24">Jeevan Amrit</div>
+        <small style="color:#7a5a4a">Meditation Center</small>
+      </div>
+    </div>
+    <div>
+      <button class="btn secondary" onclick="location.href='index.html'">Back</button>
+    </div>
+  </header>
+
+  <div class="med-wrap">
+    <div id="shlokBox" class="shlok-box">
+      <div id="shlokText" class="shlok">परात्मानमेकं जगद्बीजमाद्यं नरीहं नराकारमोंकारवेद्यम्। यतो जायते पाल्यते येन वश्वं तमीशं भजे लीयते यत्र वश्वम्।</div>
+    </div>
+
+    <div class="controls">
+      <button id="playPause" class="btn">Pause</button>
+      <label style="color:#7a5a4a">Pace</label>
+      <input id="pace" type="range" min="2500" max="7000" step="500" value="4200" />
+    </div>
+
+    <div class="small-note">Three ślokas rotate with gentle fade — minimal & modern presentation.</div>
+  </div>
+
+  <script>
+    // three ślokas provided by user (slightly normalized for display)
+    const shloks = [
+      "परात्मानमेकं जगद्बीजमाद्यं नरीहं नराकारमोंकारवेद्यम्। यतो जायते पाल्यते येन वश्वं तमीशं भजे लीयते यत्र वश्वम्।",
+      "धमसेतुपालकं त्वधममागनाशनं कमपाशमोचकं सुशमधायकं वभुम् । सवणवनशेषपाशशोभतांगमण्डलं काशकापुराधनाथकालभैरवं भजे ॥ ५॥",
+      "अधरं मधुरं वदनं मधुरं नयनं मधुरं हसतं मधुरम् वचनं मधुरं चरतं मधुरं वसनं मधुरं वलतं मधुरम् चलतं मधुरं भ्रमतं मधुरं मधुराधपतेरखलं मधुरम् नृत्यं मधुरं सख्यं मधुरं मधुराधपतेरखलं मधुर"
+    ];
+
+    const colors = ['#5c4033','#b07a36','#8b6f63']; // matching palette (brown/gold/soft)
+    const box = document.getElementById('shlokBox');
+    const text = document.getElementById('shlokText');
+    const paceInput = document.getElementById('pace');
+    const playBtn = document.getElementById('playPause');
+
+    let idx = 0;
+    let interval = parseInt(paceInput.value,10);
+    let timer = null;
+    let playing = true;
+
+    function showNext(){
+      text.classList.add('fade-out');
+      setTimeout(()=>{
+        text.textContent = shloks[idx];
+        text.style.color = colors[idx % colors.length];
+        text.classList.remove('fade-out');
+        idx = (idx + 1) % shloks.length;
+      }, 500);
+    }
+
+    function start(){
+      stop();
+      timer = setInterval(showNext, interval);
+      playing = true;
+      playBtn.textContent = 'Pause';
+    }
+    function stop(){
+      if(timer) clearInterval(timer);
+      timer = null;
+      playing = false;
+      playBtn.textContent = 'Play';
+    }
+
+    playBtn.addEventListener('click', ()=>{
+      if(playing) stop(); else start();
+    });
+
+    paceInput.addEventListener('input', ()=>{
+      interval = parseInt(paceInput.value,10);
+      if(playing) start();
+    });
+
+    // start automatically
+    start();
+  </script>
+</body>
+</html>

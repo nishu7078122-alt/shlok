@@ -1,0 +1,151 @@
+/* =========================
+   Jeevan Amrit — Minimal Modern
+   Creamy / Brown palette + auto-hide nav
+   ========================= */
+
+/* Palette */
+:root{
+  --cream:#fff7ea;
+  --sand:#f6e5cc;
+  --gold:#c99b4b;
+  --brown:#4a2f24;
+  --muted:#8b6f63;
+  --glass: rgba(169, 163, 70, 0.6);
+}
+
+/* Base */
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: linear-gradient(180deg,var(--cream),var(--sand));
+  color:var(--brown);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+/* Auto-hide navbar */
+.nav{
+  position:fixed;
+  left:0; right:0; top:0;
+  z-index:60;
+  transform:translateY(0);
+  transition:transform .35s ease;
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(74,47,36,0.06);
+  box-shadow: 0 6px 18px rgba(74,47,36,0.06);
+}
+.nav.hidden{ transform: translateY(-100%); }
+
+.nav-inner{
+  max-width:1100px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 18px;
+}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{
+  width:46px;height:46px;border-radius:10px;
+  background:linear-gradient(180deg,var(--gold),#b07b36);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;color:var(--cream);font-size:20px;
+  box-shadow:0 8px 20px rgba(74,47,36,0.12);
+}
+.brand-text h1{margin:0;font-size:18px}
+.brand-text small{color:var(--muted)}
+
+/* links */
+.links a{
+  margin-left:18px;
+  text-decoration:none;color:var(--brown);font-weight:600;
+  transition:color .18s;
+}
+.links a:hover{ color:var(--gold) }
+
+/* Main layout */
+main{ padding:96px 20px 40px; max-width:1100px; margin:0 auto; width:100%; display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:20px; }
+
+/* Card */
+.card{
+  background: rgba(255,255,255,0.9);
+  border-radius:14px;padding:18px;
+  box-shadow: 0 6px 18px rgba(74,47,36,0.06);
+  transition: transform .2s;
+}
+.card:hover{ transform: translateY(-6px); }
+.card h2{margin:0 0 12px 0;color:var(--gold)}
+
+/* Grid of rings */
+.grid-3{ display:flex; gap:18px; justify-content:space-around; flex-wrap:wrap; }
+.ring-col{ text-align:center; width:120px }
+.ring-col p{ margin:8px 0 0 0; color:var(--muted) }
+
+/* Controls */
+.controls{
+  display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px;
+}
+.controls select, .controls input{
+  padding:8px 10px; border-radius:8px; border:1px solid rgba(74,47,36,0.08);
+  background:transparent; color:var(--brown);
+}
+.controls button{
+  background:linear-gradient(180deg,var(--gold),#b27a39); color:var(--cream);
+  border:none;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:700;
+  box-shadow:0 6px 16px rgba(74,47,36,0.08);
+}
+.controls button:hover{ transform:translateY(-2px) }
+
+/* Status bar */
+.statusbar{ height:10px; background:var(--sand); border-radius:999px; margin-top:14px; overflow:hidden; box-shadow: inset 0 2px 6px rgba(74,47,36,0.03);}
+#statusFill,#dietStatusFill{ height:100%; width:0%; background:linear-gradient(90deg,var(--gold),var(--brown)); transition: width .9s cubic-bezier(.2,.9,.3,1); }
+
+/* BMI area */
+.bmi-area{ display:flex; align-items:center; gap:18px; justify-content:center; margin-top:8px }
+.bmi-info #bmiResult{ font-size:28px; font-weight:700; color:var(--brown) }
+.bmi-info #bmiLabel{ color:var(--muted) }
+
+/* Footer */
+footer{ text-align:center; padding:18px 8px; color:var(--muted); }
+
+/* Responsive */
+@media (max-width:720px){
+  .nav-inner{ padding:10px; }
+  main{ padding:86px 12px 28px; grid-template-columns:1fr; }
+  .grid-3{ justify-content:center }
+}
+
+/* ---------- Shloka Banner ---------- */
+.shloka-banner {
+  background: linear-gradient(90deg, #fdf7ea, #f3e1c6);
+  color: #4a2f24;
+  text-align: center;
+  padding: 2rem 1rem;
+  border-radius: 16px;
+  margin-bottom: 2rem;
+  box-shadow: 0 6px 20px rgba(74,47,36,0.06);
+  overflow: hidden;
+  position: relative;
+}
+
+.shloka-line {
+  font-family: "Noto Sans Devanagari", serif;
+  font-size: clamp(1.1rem, 2.8vw, 1.6rem);
+  line-height: 1.6;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.shloka-line.fade-out {
+  opacity: 0;
+  transform: translateY(15px);
+}
+#shlokaText{
+  margin-top: 100px;
+}

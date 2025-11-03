@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Jeevan Amrit — Wellness</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header id="topNav" class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="logo">☕</div>
+        <div class="brand-text">
+          <h1>Jeevan Amrit</h1>
+          <small>Mind • Body • Nutrition</small>
+        </div>
+      </div>
+      <nav class="links">
+        <a href="#wellness">Wellness</a>
+        <a href="#diet">Diet</a>
+        <a href="#bmi">BMI</a>
+        <a href="meditation.html">Meditation</a>
+      </nav>
+    </div>
+    
+  </header>
+<section class="shloka-banner">
+  <div id="shlokaText" class="shloka-line">
+    परात्मानमेकं जगद्बीजमाद्यं नरीहं नराकारमोंकारवेद्यम्।
+    यतो जायते पाल्यते येन वश्वं तमीशं भजे लीयते यत्र वश्वम्।
+  </div>
+</section>
+  <main>
+    <!-- Inspirational Shloka Carousel -->
+
+
+    <!-- Wellness -->
+    <section id="wellness" class="card">
+      <h2>Wellness</h2>
+      <div class="grid-3">
+        <div class="ring-col">
+          <canvas id="moodCanvas" width="120" height="120"></canvas>
+          <p>Meditation</p>
+        </div>
+        <div class="ring-col">
+          <canvas id="exerciseCanvas" width="120" height="120"></canvas>
+          <p>Exercise</p>
+        </div>
+        <div class="ring-col">
+          <canvas id="sleepCanvas" width="120" height="120"></canvas>
+          <p>Sleep</p>
+        </div>
+      </div>
+
+      <div class="controls">
+        <select id="activityType" onchange="updateUnitOptions()">
+          <option value="">Select activity</option>
+          <option value="mood">Meditation</option>
+          <option value="exercise">Exercise</option>
+          <option value="sleep">Sleep</option>
+        </select>
+
+        <select id="unitType"><option value="">Unit</option></select>
+
+        <input id="goalInput" type="number" placeholder="Goal (eg 60)" min="1" />
+        <input id="progressInput" type="number" placeholder="Progress" min="0" />
+        <button onclick="updateWellness()">Update</button>
+      </div>
+
+      <div class="statusbar">
+        <div id="statusFill"></div>
+      </div>
+    </section>
+
+    <!-- Diet -->
+    <section id="diet" class="card">
+      <h2>Diet</h2>
+      <div class="grid-3">
+        <div class="ring-col">
+          <canvas id="calorieCanvas" width="120" height="120"></canvas>
+          <p>Calories</p>
+        </div>
+        <div class="ring-col">
+          <canvas id="proteinCanvas" width="120" height="120"></canvas>
+          <p>Protein</p>
+        </div>
+        <div class="ring-col">
+          <canvas id="waterCanvas" width="120" height="120"></canvas>
+          <p>Water</p>
+        </div>
+      </div>
+
+      <div class="controls">
+        <select id="dietType">
+          <option value="">Type</option>
+          <option value="calories">Calories</option>
+          <option value="protein">Protein</option>
+          <option value="water">Water</option>
+        </select>
+
+        <input id="dietGoalInput" type="number" placeholder="Goal" min="1" />
+        <input id="dietProgressInput" type="number" placeholder="Progress" min="0" />
+        <button onclick="updateDiet()">Update</button>
+      </div>
+
+      <div class="statusbar">
+        <div id="dietStatusFill"></div>
+      </div>
+    </section>
+
+    <!-- BMI -->
+    <section id="bmi" class="card">
+      <h2>BMI</h2>
+      <div class="bmi-area">
+        <canvas id="bmiCanvas" width="160" height="160"></canvas>
+        <div class="bmi-info">
+          <div id="bmiResult">—</div>
+          <div id="bmiLabel">Enter weight & height</div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <input id="weightInput" type="number" placeholder="Weight (kg)" min="1" />
+        <input id="heightInput" type="number" placeholder="Height (cm)" min="1" />
+        <button onclick="calculateBMI()">Calculate</button>
+      </div>
+    </section>
+  </main>
+  <section class="shloka-banner">
+  <div id="shlokaText" class="shloka-line">
+    परात्मानमेकं जगद्बीजमाद्यं नरीहं नराकारमोंकारवेद्यम्।
+    यतो जायते पाल्यते येन वश्वं तमीशं भजे लीयते यत्र वश्वम्।
+  </div>
+</section>
+<iframe id="JotFormIFrame-019a48cabe07712b832052b196d5e386abc0" title="Ayla: Medical Consultant"
+  onload="window.parent.scrollTo(0,0)" allowtransparency="true"
+  allow="geolocation; microphone; camera; fullscreen"
+  src="https://agent.jotform.com/019a48cabe07712b832052b196d5e386abc0?embedMode=iframe&background=1&shadow=1"
+  frameborder="0" style="
+    max-width:100%;
+    height:688px;
+    border:none;
+    
+    width:100%;
+  " scrolling="no">
+</iframe>
+<script src='https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js'></script>
+<script>
+  window.jotformEmbedHandler("iframe[id='JotFormIFrame-019a48cabe07712b832052b196d5e386abc0']",
+    "https://www.jotform.com")
+</script>
+  <footer>
+    <small>nishu7078122 --- Nishu,Divyansh,Sachin,Aditya</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
